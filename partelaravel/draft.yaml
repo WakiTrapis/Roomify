@@ -1,0 +1,103 @@
+models:
+  User:
+    id: uuid primary
+    full_name: string:255
+    email: string:255 unique
+    password_hash: string:255
+    role: enum:ADMIN,ADMIN_PLUS,USER default:USER
+    avatar_url: string:255 nullable
+    flat_id: uuid nullable foreign:flats.id
+    timestamps: true
+    relationships:
+      belongsTo: Flat
+      hasMany: Expense, Task, Incidence
+
+  Flat:
+    id: uuid primary
+    code: string:20 unique
+    address: string:255
+    is_owner_attached: boolean default:false
+    owner_id: uuid nullable foreign:users.id
+    timestamps: true
+    relationships:
+      belongsTo: User (foreignKey: owner_id)
+      hasMany: User, Task, Expense, Incidence
+      hasOne: Contract
+
+  Contract:
+    id: uuid primary
+    flat_id: uuid foreign:flats.id
+    monthly_rent: decimal:8,2
+    deposit_amount: decimal:8,2
+    iban: string:34
+    start_date: date
+    end_date: date nullable
+    timestamps: true
+    relationships:
+      belongsTo: Flat
+
+  Expense:
+    id: uuid primary
+    flat_id: uuid foreign:flats.id
+    paid_by_user_id: uuid foreign:users.id
+    title: string:255
+    amount: decimal:8,2
+    category: enum:SUPPLIES,RENT,FOOD,MAINTENANCE,OTHER default:OTHER
+    expense_date: date
+    status: enum:PENDING,PAID default:PENDING
+    timestamps: true
+    relationships:
+      belongsTo: Flat, User (foreignKey: paid_by_user_id)
+      hasOne: TicketOCR, Receipt
+
+  TicketOCR:
+    id: uuid primary
+    expense_id: uuid foreign:expenses.id
+    image_url: string:255
+    extracted_amount: decimal:8,2 nullable
+    extracted_date: date nullable
+    extracted_vendor: string:255 nullable
+    raw_ocr_data: json nullable
+    timestamps: true
+    relationships:
+      belongsTo: Expense
+
+  Task:
+    id: uuid primary
+    flat_id: uuid foreign:flats.id
+    assigned_to_user_id: uuid nullable foreign:users.id
+    name: string:255
+    weight: integer default:1
+    frequency: enum:DAILY,WEEKLY,BIWEEKLY,MONTHLY default:WEEKLY
+    is_completed: boolean default:false
+    due_date: date nullable
+    completed_at: timestamp nullable
+    timestamps: true
+    relationships:
+      belongsTo: Flat, User (foreignKey: assigned_to_user_id)
+
+  Incidence:
+    id: uuid primary
+    flat_id: uuid foreign:flats.id
+    reported_by_user_id: uuid foreign:users.id
+    title: string:255
+    description: text
+    photo_url: string:255 nullable
+    status: enum:OPEN,IN_PROGRESS,RESOLVED default:OPEN
+    priority: enum:LOW,MEDIUM,HIGH,URGENT default:MEDIUM
+    assigned_tech_info: string:255 nullable
+    timestamps: true
+    relationships:
+      belongsTo: Flat, User (foreignKey: reported_by_user_id)
+
+  Receipt:
+    id: uuid primary
+    expense_id: uuid foreign:expenses.id
+    receipt_number: string:50 unique
+    hash_sha256: string:64
+    pdf_url: string:255
+    is_official: boolean default:false
+    issued_at: timestamp
+    timestamps: true
+    relationships:
+      belongsTo: Expense

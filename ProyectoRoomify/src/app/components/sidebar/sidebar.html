@@ -1,0 +1,17 @@
+
+<aside class="sidebar d-flex flex-column p-3">
+    <div class="d-flex align-items-center gap-2 mb-4 px-2">
+        <i class="bi bi-house-heart-fill fs-4 brand-icon"></i>
+        <span class="fs-5 fw-semibold text-white">Roomify</span>
+    </div>
+
+    <nav class="nav flex-column gap-1">
+        @for (link of links; track link.path) {
+            <a class="nav-link sidebar-link" [routerLink]="link.path" routerLinkActive="active">
+                <i class="bi {{ link.icon }} me-2"></i>{{ link.label }}
+            </a>
+    }
+    </nav>
+
+    <small class="mt-auto px-2 text-white-50">© Roomify</small>
+</aside>

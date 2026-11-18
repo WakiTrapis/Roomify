@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h5 class="modal-title">Confirmar eliminación</h5>
+    <button type="button" class="btn-close" aria-label="Cerrar" (click)="cancel()"></button>
+</div>
+
+<div class="modal-body">
+    <p class="mb-0">
+        ¿Seguro que quieres eliminar <strong>{{ itemName() }}</strong>?
+        Esta acción no se puede deshacer.
+    </p>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="cancel()">No, cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="confirm()">Sí, eliminar</button>
+</div>

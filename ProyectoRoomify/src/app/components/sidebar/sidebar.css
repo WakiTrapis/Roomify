@@ -1,0 +1,24 @@
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: #141a3d;
+}
+
+.brand-icon {
+    color: #6366f1;
+}
+
+.sidebar-link {
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 0.5rem;
+}
+
+.sidebar-link:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-link.active {
+    color: #fff;
+    background: #6366f1;
+}

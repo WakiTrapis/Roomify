@@ -1,0 +1,1288 @@
+{
+  "info": {
+    "_postman_id": "46c4330c-f784-41bd-a3c2-ec201dd6f0f7",
+    "name": "RoomifyTests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58520695",
+    "_collection_link": "https://go.postman.co/collection/58520695-46c4330c-f784-41bd-a3c2-ec201dd6f0f7?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Comun",
+      "item": [
+        {
+          "name": "Registro",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener perfil propio",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/users/me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar datos del perfil propio",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/users/me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Vivienda y acceso",
+          "item": [
+            {
+              "name": "Unirse a un piso",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/join",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "join"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Ver datos básicos de su vivienda",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Consultar condiciones del contrato, fianza e IBAN (Solo lectura)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/contract",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "contract"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Leer normas y comunicados oficiales del propietario (Solo lectura)",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/announcements",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "announcements"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Tareas del hogar",
+          "item": [
+            {
+              "name": "Listar cuadrante de tareas asignadas",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/tasks",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "tasks"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Crear una tarea puntual",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/tasks",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "tasks"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Marcar tarea como completada",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/tasks/{taskId}/complete",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tasks",
+                    "{taskId}",
+                    "complete"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Gastos Internos, Bote y OCR(Privado del piso)",
+          "item": [
+            {
+              "name": "Registrar un gasto interno",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/expenses/internal",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "expenses",
+                    "internal"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Consultar balance de deudas individual",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/users/me/balance",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "balance"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Ver gastos compartidos y estado del bote común",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/expenses/internal",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "expenses",
+                    "internal"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Subir foto de ticket",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/expenses/ocr",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "expenses",
+                    "ocr"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Marcar participación de gasto como pagada",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/expenses/{expenseId}/pay",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "expenses",
+                    "{expenseId}",
+                    "pay"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Facturas Oficiales y Recibos",
+          "item": [
+            {
+              "name": "Consultar facturas de suministros y alquiler",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/expenses/official",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "expenses",
+                    "official"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Subir justificante de pago de una factura oficial",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/expenses/{expenseId}/payment-proof",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "expenses",
+                    "{expenseId}",
+                    "payment-proof"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Descargar recibo PDF con sello Hash SHA-256",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/receipts/{receiptId}/download",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "receipts",
+                    "{receiptId}",
+                    "download"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Incidencias y Convivencia",
+          "item": [
+            {
+              "name": "Reportar avería adjuntando fotos y nivel de urgencia",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/incidences",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "incidences"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Ver estado de las incidencias reportadas",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/incidences",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "incidences"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Consultar mensajes del tablón y lista de la compra",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/board",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "board"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Publicar o comentar en el tablón / añadir ítems a la lista",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/board",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "board"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Admin_plus",
+      "item": [
+        {
+          "name": "Gestión de Vivienda y Membresías",
+          "item": [
+            {
+              "name": "Crear un nuevo piso en Modo Autogestionado",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Ver y compartir el código/QR de acceso del piso",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/access-code",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "access-code"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Expulsar o gestionar membresías de inquilinos",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/members/{userId}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "members",
+                    "{userId}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Control Total de Convivencia",
+          "item": [
+            {
+              "name": "Editar tareas domésticas",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/tasks/{taskId}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tasks",
+                    "{taskId}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "eliminar tareas domésticas",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/tasks/{taskId}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tasks",
+                    "{taskId}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Modificar  gastos internos y ajustes del bote",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/expenses/internal/{expenseId}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "expenses",
+                    "internal",
+                    "{expenseId}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar gastos internos y ajustes del bote",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/expenses/internal/{expenseId}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "expenses",
+                    "internal",
+                    "{expenseId}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "borrar publicaciones del tablón o chat interno",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/board/{postId}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "board",
+                    "{postId}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Permisos Condicionales",
+          "item": [
+            {
+              "name": "Cargar facturas generales",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/expenses/official",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "expenses",
+                    "official"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Editar facturas en modo autogestionado",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/expenses/official/{expenseId}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "expenses",
+                    "official",
+                    "{expenseId}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "borrar facturas en modo autogestionado",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/expenses/official/{expenseId}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "expenses",
+                    "official",
+                    "{expenseId}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Emitir recibo PDF interno con firma Hash SHA-256",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/expenses/{expenseId}/receipt",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "expenses",
+                    "{expenseId}",
+                    "receipt"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Gestión del Inmueble y Contrato",
+          "item": [
+            {
+              "name": "Vincularse a un piso existente mediante código o dar de alta inmueble",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/link",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "link"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Editar datos generales de la vivienda",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Crear contrato de arrendamiento",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/contract",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "contract"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar condiciones contractuales",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/contract",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "contract"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Generar o revocar el código y QR de acceso al piso",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/access-code/regenerate",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "access-code",
+                    "regenerate"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Normas y Comunicados Oficiales",
+          "item": [
+            {
+              "name": "Publicar normas o avisos oficiales del arrendador",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/announcements",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "announcements"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar comunicados",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/announcements/{announcementId}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "announcements",
+                    "{announcementId}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Facturación Oficial, Recibos y Analítica",
+          "item": [
+            {
+              "name": "Cargar factura oficial de suministro o mensualidad de alquiler",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/expenses/official",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "expenses",
+                    "official"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Modificar facturas oficiales",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/expenses/official/{expenseId}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "expenses",
+                    "official",
+                    "{expenseId}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "eliminar facturas oficiales.",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/expenses/official/{expenseId}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "expenses",
+                    "official",
+                    "{expenseId}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Emitir recibo PDF oficial con Hash SHA-256 tras validar pago",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/expenses/{expenseId}/receipt/official",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "expenses",
+                    "{expenseId}",
+                    "receipt",
+                    "official"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener métricas de recaudación, consumos y morosidad",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/admin/flats/{flatId}/analytics",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "flats",
+                    "{flatId}",
+                    "analytics"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener datos estructurados para el tablero Kanban de pagos",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/admin/flats/{flatId}/kanban-payments",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "flats",
+                    "{flatId}",
+                    "kanban-payments"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Exportar informe contable en CSV/Excel",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/admin/flats/{flatId}/export?format=xlsx",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "flats",
+                    "{flatId}",
+                    "export"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "xlsx"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Gestión de Incidencias Técnicas",
+          "item": [
+            {
+              "name": "Listar todas las averías del inmueble",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/flats/{flatId}/incidences",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "flats",
+                    "{flatId}",
+                    "incidences"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Asignar un técnico y actualizar estado de reparación",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/incidences/{incidenceId}/assign-tech",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "incidences",
+                    "{incidenceId}",
+                    "assign-tech"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Cerrar o eliminar incidencia.",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/incidences/{incidenceId}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "incidences",
+                    "{incidenceId}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
