@@ -1,0 +1,69 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+    <div class="modal-header">
+        <h5 class="modal-title">{{ isEdit() ? 'Editar incidencia' : 'Nueva incidencia' }}</h5>
+        <button type="button" class="btn-close" aria-label="Cerrar" (click)="cancel()"></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="mb-3">
+            <label for="title" class="form-label">Título</label>
+            <input id="title" type="text" class="form-control" formControlName="title"
+                [class.is-invalid]="isInvalid('title')" placeholder="Ej: Grifo roto en la cocina" />
+            <div class="invalid-feedback">El título es obligatorio (máximo 80 caracteres).</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea id="description" rows="3" class="form-control" formControlName="description"
+                [class.is-invalid]="isInvalid('description')"></textarea>
+            <div class="invalid-feedback">La descripción es obligatoria (máximo 500 caracteres).</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="priority" class="form-label">Prioridad</label>
+                <select id="priority" class="form-select" formControlName="priority">
+                    @for (p of priorities; track p.value) {
+                    <option [value]="p.value">{{ p.label }}</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="status" class="form-label">Estado</label>
+                <select id="status" class="form-select" formControlName="status">
+                    @for (s of statuses; track s.value) {
+                    <option [value]="s.value">{{ s.label }}</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="technician" class="form-label">Técnico asignado</label>
+                <input id="technician" type="text" class="form-control" formControlName="technician"
+                    placeholder="Sin asignar" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="reportedBy" class="form-label">Reportada por</label>
+                <input id="reportedBy" type="text" class="form-control" formControlName="reportedBy"
+                    [class.is-invalid]="isInvalid('reportedBy')" />
+                <div class="invalid-feedback">Indica quién reporta la incidencia.</div>
+            </div>
+        </div>
+
+        <div class="mb-1">
+            <label for="date" class="form-label">Fecha</label>
+            <input id="date" type="date" class="form-control" formControlName="date"
+                [class.is-invalid]="isInvalid('date')" />
+            <div class="invalid-feedback">La fecha es obligatoria.</div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancelar</button>
+        <button type="submit" class="btn btn-primary">{{ isEdit() ? 'Guardar cambios' : 'Crear incidencia' }}</button>
+    </div>
+</form>

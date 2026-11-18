@@ -13,7 +13,7 @@ import { ConfirmDeleteModal } from '../../shared/confirm-delete-modal/confirm-de
 export class InvoicesPage {
   private readonly modalService = inject(NgbModal);
 
-  // Datos mock hasta conectar con el servicio
+  // Datos de prueba hasta conectar con el servicio
   readonly invoices = signal<Invoice[]>([
     { id: '1', concept: 'Factura de luz', amount: 84.5, category: 'luz', date: '2027-03-10', status: 'pendiente' },
     { id: '2', concept: 'Factura de agua', amount: 32.15, category: 'agua', date: '2027-03-05', status: 'pagada' },
