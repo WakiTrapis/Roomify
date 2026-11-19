@@ -1,1 +1,63 @@
-<p>flat-settings-page works!</p>
+<div class="mb-4">
+    <h2 class="mb-0">Ajustes de la vivienda</h2>
+    <small class="text-muted">{{ flatName }}: contrato y acceso de los inquilinos</small>
+</div>
+
+<div class="row g-3">
+    <div class="col-12 col-lg-7">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Contrato de alquiler</h5>
+                <button type="button" class="btn btn-sm btn-outline-primary" (click)="openEdit()">
+                    <i class="bi bi-pencil"></i> Editar
+                </button>
+            </div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-5">Alquiler mensual</dt>
+                    <dd class="col-sm-7">{{ contract().monthlyRent.toFixed(2) }} €</dd>
+
+                    <dt class="col-sm-5">Fianza</dt>
+                    <dd class="col-sm-7">{{ contract().deposit.toFixed(2) }} €</dd>
+
+                    <dt class="col-sm-5">IBAN de cobro</dt>
+                    <dd class="col-sm-7"><code>{{ formatIban(contract().iban) }}</code></dd>
+
+                    <dt class="col-sm-5">Inicio</dt>
+                    <dd class="col-sm-7">{{ contract().startDate }}</dd>
+
+                    <dt class="col-sm-5">Fin</dt>
+                    <dd class="col-sm-7 mb-0">{{ contract().endDate }}</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-5">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">Código de acceso</h5>
+            </div>
+            <div class="card-body text-center">
+                <p class="text-muted small">Los inquilinos se unen al piso con este código o con el QR.</p>
+
+                <div class="display-6 fw-semibold text-primary mb-3">{{ accessCode() }}</div>
+
+                <div class="qr-placeholder border rounded d-flex align-items-center justify-content-center
+                    text-muted mx-auto mb-3">
+                    <i class="bi bi-qr-code fs-1"></i>
+                </div>
+
+                <div class="d-flex justify-content-center gap-2">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="copyCode()">
+                        <i class="bi" [class.bi-clipboard]="!copied()" [class.bi-clipboard-check]="copied()"></i>
+                        {{ copied() ? 'Copiado' : 'Copiar' }}
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-primary" (click)="generateCode()">
+                        <i class="bi bi-arrow-repeat"></i> Generar nuevo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
