@@ -1,1 +1,21 @@
-<p>tenants-page works!</p>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="mb-0">Inquilinos</h2>
+        <small class="text-muted">Personas que viven en la vivienda y su estado de pago</small>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="openAdd()">
+        <i class="bi bi-plus-lg me-1"></i>Nuevo inquilino
+    </button>
+</div>
+
+<div class="row g-3">
+    @for (tenant of tenants(); track tenant.id) {
+    <div class="col-12 col-md-6 col-xl-4">
+        <app-tenant-card [tenant]="tenant" (edit)="openEdit($event)" (remove)="openDelete($event)" />
+    </div>
+    } @empty {
+    <div class="col-12">
+        <div class="text-center text-muted py-5">No hay inquilinos registrados</div>
+    </div>
+    }
+</div>

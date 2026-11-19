@@ -13,7 +13,7 @@ export class NoticeModal implements OnInit {
   private readonly activeModal = inject(NgbActiveModal);
   private readonly fb = inject(NonNullableFormBuilder);
 
-  // null = alta nueva; con datos = edición. Lo rellena la page.
+
   readonly notice = signal<Notice | null>(null);
   readonly isEdit = computed(() => this.notice() !== null);
 

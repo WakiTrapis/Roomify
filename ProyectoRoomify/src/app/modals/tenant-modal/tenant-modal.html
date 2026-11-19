@@ -1,0 +1,63 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+    <div class="modal-header">
+        <h5 class="modal-title">{{ isEdit() ? 'Editar inquilino' : 'Nuevo inquilino' }}</h5>
+        <button type="button" class="btn-close" aria-label="Cerrar" (click)="cancel()"></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="mb-3">
+            <label for="fullName" class="form-label">Nombre completo</label>
+            <input id="fullName" type="text" class="form-control" formControlName="fullName"
+                [class.is-invalid]="isInvalid('fullName')" placeholder="Ej: Lucía Ramos" />
+            <div class="invalid-feedback">El nombre es obligatorio (máximo 80 caracteres).</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input id="email" type="email" class="form-control" formControlName="email"
+                    [class.is-invalid]="isInvalid('email')" placeholder="nombre@ejemplo.com" />
+                <div class="invalid-feedback">Introduce un correo electrónico válido.</div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="phone" class="form-label">Teléfono</label>
+                <input id="phone" type="tel" class="form-control" formControlName="phone"
+                    [class.is-invalid]="isInvalid('phone')" placeholder="+34 600 000 000" />
+                <div class="invalid-feedback">Introduce un teléfono válido (entre 9 y 15 dígitos).</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="role" class="form-label">Rol</label>
+                <select id="role" class="form-select" formControlName="role">
+                    @for (r of roles; track r.value) {
+                    <option [value]="r.value">{{ r.label }}</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="paymentStatus" class="form-label">Estado de pago</label>
+                <select id="paymentStatus" class="form-select" formControlName="paymentStatus">
+                    @for (s of statuses; track s.value) {
+                    <option [value]="s.value">{{ s.label }}</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-1">
+            <label for="monthlyShare" class="form-label">Cuota mensual (€)</label>
+            <input id="monthlyShare" type="number" step="0.01" class="form-control" formControlName="monthlyShare"
+                [class.is-invalid]="isInvalid('monthlyShare')" />
+            <div class="invalid-feedback">La cuota no puede ser negativa.</div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancelar</button>
+        <button type="submit" class="btn btn-primary">{{ isEdit() ? 'Guardar cambios' : 'Añadir inquilino' }}</button>
+    </div>
+</form>
