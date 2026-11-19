@@ -7,3 +7,8 @@ export interface Notice {
     type: NoticeType;
     date: string;
 }
+
+export const NOTICE_TYPES: { value: NoticeType; label: string; badge: string }[] = [
+    { value: 'norma', label: 'Norma', badge: 'text-bg-primary' },
+    { value: 'comunicado', label: 'Comunicado', badge: 'text-bg-info' },
+];
