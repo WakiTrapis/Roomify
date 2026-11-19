@@ -9,3 +9,9 @@ export interface Receipt {
     issuedDate: string;
     hash: string | null;
 }
+
+export const RECEIPT_STATUSES: { value: ReceiptStatus; label: string; badge: string }[] = [
+    { value: 'emitido', label: 'Emitido', badge: 'text-bg-warning' },
+    { value: 'pagado', label: 'Pagado', badge: 'text-bg-success' },
+    { value: 'anulado', label: 'Anulado', badge: 'text-bg-secondary' },
+];

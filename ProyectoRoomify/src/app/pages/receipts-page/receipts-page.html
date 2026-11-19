@@ -1,1 +1,65 @@
-<p>receipts-page works!</p>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="mb-0">Recibos</h2>
+        <small class="text-muted">Justificantes de pago de cada mensualidad</small>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="openAdd()">
+        <i class="bi bi-plus-lg me-1"></i>Nuevo recibo
+    </button>
+</div>
+
+<div class="card shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Inquilino</th>
+                    <th>Periodo</th>
+                    <th class="text-end">Importe</th>
+                    <th>Estado</th>
+                    <th>Emitido</th>
+                    <th>Sello SHA-256</th>
+                    <th class="text-end">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (receipt of receipts(); track receipt.id) {
+                <tr>
+                    <td class="fw-medium">{{ receipt.tenantName }}</td>
+                    <td>{{ receipt.period }}</td>
+                    <td class="text-end">{{ receipt.amount.toFixed(2) }} €</td>
+                    <td>
+                        <span class="badge" [class]="statusBadge(receipt.status)">
+                            {{ statusLabel(receipt.status) }}
+                        </span>
+                    </td>
+                    <td>{{ receipt.issuedDate }}</td>
+                    <td>
+                        @if (receipt.hash) {
+                        <code class="small" [title]="receipt.hash">{{ shortHash(receipt.hash) }}</code>
+                        } @else {
+                        <span class="text-muted">Sin generar</span>
+                        }
+                    </td>
+                    <td class="text-end text-nowrap">
+                        <button type="button" class="btn btn-sm btn-outline-secondary me-1" [disabled]="!receipt.hash"
+                            title="Descargar PDF">
+                            <i class="bi bi-file-earmark-pdf"></i> PDF
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-primary me-1" (click)="openEdit(receipt)">
+                            <i class="bi bi-pencil"></i> Editar
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger" (click)="openDelete(receipt)">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </button>
+                    </td>
+                </tr>
+                } @empty {
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-4">No hay recibos emitidos</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

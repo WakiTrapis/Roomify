@@ -1,0 +1,59 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+    <div class="modal-header">
+        <h5 class="modal-title">{{ isEdit() ? 'Editar recibo' : 'Nuevo recibo' }}</h5>
+        <button type="button" class="btn-close" aria-label="Cerrar" (click)="cancel()"></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="mb-3">
+            <label for="tenantName" class="form-label">Inquilino</label>
+            <input id="tenantName" type="text" class="form-control" formControlName="tenantName"
+                [class.is-invalid]="isInvalid('tenantName')" placeholder="Ej: Lucía Ramos" />
+            <div class="invalid-feedback">El inquilino es obligatorio (máximo 80 caracteres).</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="period" class="form-label">Periodo</label>
+                <input id="period" type="month" class="form-control" formControlName="period"
+                    [class.is-invalid]="isInvalid('period')" />
+                <div class="invalid-feedback">El periodo es obligatorio.</div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="amount" class="form-label">Importe (€)</label>
+                <input id="amount" type="number" step="0.01" class="form-control" formControlName="amount"
+                    [class.is-invalid]="isInvalid('amount')" />
+                <div class="invalid-feedback">El importe debe ser mayor que 0.</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="status" class="form-label">Estado</label>
+                <select id="status" class="form-select" formControlName="status">
+                    @for (s of statuses; track s.value) {
+                    <option [value]="s.value">{{ s.label }}</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="issuedDate" class="form-label">Fecha de emisión</label>
+                <input id="issuedDate" type="date" class="form-control" formControlName="issuedDate"
+                    [class.is-invalid]="isInvalid('issuedDate')" />
+                <div class="invalid-feedback">La fecha de emisión es obligatoria.</div>
+            </div>
+        </div>
+
+        <div class="alert alert-light border small mb-0">
+            <i class="bi bi-shield-check me-1"></i>
+            El sello SHA-256 se generará automáticamente al emitir el PDF. No se puede editar a mano.
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancelar</button>
+        <button type="submit" class="btn btn-primary">{{ isEdit() ? 'Guardar cambios' : 'Crear recibo' }}</button>
+    </div>
+</form>
