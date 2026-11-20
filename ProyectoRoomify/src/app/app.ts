@@ -28,4 +28,15 @@ export class App {
 
   // El layout (sidebar y topbar) se oculta solo en la pantalla de login
   readonly showLayout = computed(() => !this.currentUrl().startsWith('/login'));
+
+  // Estado del panel lateral en pantallas pequeñas
+  readonly sidebarOpen = signal(false);
+
+  toggleSidebar() {
+    this.sidebarOpen.update(open => !open);
+  }
+
+  closeSidebar() {
+    this.sidebarOpen.set(false);
+  }
 }

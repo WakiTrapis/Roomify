@@ -22,3 +22,26 @@
     color: #fff;
     background: #6366f1;
 }
+
+/* Pantallas pequeñas: la sidebar se convierte en un panel lateral */
+@media (max-width: 991.98px) {
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    min-height: 0;
+    overflow-y: auto;
+    z-index: 1040;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition:
+    transform 0.25s ease,
+    visibility 0.25s;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+    visibility: visible;
+}
+}

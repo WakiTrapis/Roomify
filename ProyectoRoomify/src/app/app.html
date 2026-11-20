@@ -1,14 +1,18 @@
 <div class="app-shell">
     @if (showLayout()) {
-    <app-sidebar />
+    <app-sidebar [open]="sidebarOpen()" (navigate)="closeSidebar()" />
+
+    @if (sidebarOpen()) {
+    <div class="sidebar-backdrop d-lg-none" (click)="closeSidebar()"></div>
+    }
     }
 
     <div class="app-main">
         @if (showLayout()) {
-        <app-topbar />
+        <app-topbar (menuToggle)="toggleSidebar()" />
         }
 
-        <main class="app-content" [class.p-4]="showLayout()">
+        <main class="app-content" [class.p-3]="showLayout()" [class.p-md-4]="showLayout()">
             <router-outlet />
         </main>
     </div>

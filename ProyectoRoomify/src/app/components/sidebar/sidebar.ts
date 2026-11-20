@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -8,6 +8,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './sidebar.html',
 })
 export class Sidebar {
+    // Solo se usa en pantallas pequeñas; en escritorio la sidebar siempre está visible
+  readonly open = input(false);
+
+  // Avisa a App cuando el usuario pulsa un enlace, para cerrar el panel
+  readonly navigate = output<void>();
+  
   readonly links = [
     { path: '/dashboard', label: 'Inicio', icon: 'bi-house' },
     { path: '/invoices', label: 'Facturas', icon: 'bi-receipt' },
