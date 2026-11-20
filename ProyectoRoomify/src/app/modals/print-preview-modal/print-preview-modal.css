@@ -1,0 +1,10 @@
+.print-photo {
+    max-height: 14cm;
+    object-fit: contain;
+}
+
+@media print {
+    .print-sheet {
+    break-inside: avoid;
+    }
+}

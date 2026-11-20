@@ -1,0 +1,50 @@
+<div class="modal-header no-print">
+    <h5 class="modal-title">Vista previa de impresión</h5>
+    <button type="button" class="btn-close" aria-label="Cerrar" (click)="close()"></button>
+</div>
+
+<div class="modal-body">
+    @if (doc(); as d) {
+    <article class="print-sheet">
+        <header class="d-flex justify-content-between align-items-start border-bottom pb-3 mb-3">
+            <div>
+                <div class="fw-semibold fs-5">Roomify</div>
+                <small class="text-muted">Gestión de pisos de estudiantes</small>
+            </div>
+            <div class="text-end">
+                <h4 class="mb-0">{{ d.title }}</h4>
+                <small class="text-muted">Nº {{ d.reference }}</small>
+            </div>
+        </header>
+
+        <dl class="row mb-3">
+            @for (row of d.rows; track row.label) {
+            <dt class="col-sm-4">{{ row.label }}</dt>
+            <dd class="col-sm-8">{{ row.value }}</dd>
+            }
+        </dl>
+
+        @if (d.photoUrl) {
+        <figure class="text-center mb-3">
+            <img [src]="d.photoUrl" alt="Documento adjunto" class="img-fluid border rounded print-photo" />
+            <figcaption class="small text-muted">Documento adjunto</figcaption>
+        </figure>
+        }
+
+        @if (d.seal) {
+        <p class="small mb-1 text-break">
+            <i class="bi bi-shield-check me-1"></i>Sello SHA-256: <code>{{ d.seal }}</code>
+        </p>
+        }
+
+        <p class="small text-muted mb-0">Impreso el {{ today }}</p>
+    </article>
+    }
+</div>
+
+<div class="modal-footer no-print">
+    <button type="button" class="btn btn-outline-secondary" (click)="close()">Cerrar</button>
+    <button type="button" class="btn btn-primary" (click)="print()">
+        <i class="bi bi-printer me-1"></i>Imprimir
+    </button>
+</div>

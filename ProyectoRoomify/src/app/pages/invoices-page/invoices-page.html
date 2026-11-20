@@ -38,7 +38,11 @@
                             {{ statusLabel(invoice.status) }}
                         </span>
                     </td>
-                    <td class="text-end">
+                    <td class="text-end text-nowrap">
+                        <button type="button" class="btn btn-sm btn-outline-secondary me-1" title="Imprimir"
+                            aria-label="Imprimir factura" (click)="openPrint(invoice)">
+                            <i class="bi bi-printer"></i>
+                        </button>
                         <button type="button" class="btn btn-sm btn-outline-primary me-1" (click)="openEdit(invoice)">
                             <i class="bi bi-pencil"></i> Editar
                         </button>

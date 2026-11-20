@@ -3,6 +3,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { INVOICE_CATEGORIES, INVOICE_STATUSES, Invoice } from '../../models/invoice';
 import { InvoiceModal } from '../../modals/invoice-modal/invoice-modal';
 import { ConfirmDeleteModal } from '../../shared/confirm-delete-modal/confirm-delete-modal';
+import { PrintPreviewModal } from '../../modals/print-preview-modal/print-preview-modal';
+import { invoiceToPrintDocument } from '../../utils/print-documents';
+
 
 @Component({
   imports: [],
@@ -36,7 +39,7 @@ export class InvoicesPage {
     const ref = this.modalService.open(InvoiceModal);
     ref.result.then(
       (created: Invoice) => this.invoices.update(list => [...list, created]),
-      () => {}, // modal cerrado sin guardar
+      () => { }, // modal cerrado sin guardar
     );
   }
 
@@ -46,7 +49,7 @@ export class InvoicesPage {
     ref.result.then(
       (updated: Invoice) =>
         this.invoices.update(list => list.map(i => (i.id === updated.id ? updated : i))),
-      () => {},
+      () => { },
     );
   }
 
@@ -58,5 +61,10 @@ export class InvoicesPage {
         this.invoices.update(list => list.filter(i => i.id !== invoice.id));
       }
     });
+  }
+
+  openPrint(invoice: Invoice) {
+    const ref = this.modalService.open(PrintPreviewModal, { size: 'lg' });
+    (ref.componentInstance as PrintPreviewModal).doc.set(invoiceToPrintDocument(invoice));
   }
 }

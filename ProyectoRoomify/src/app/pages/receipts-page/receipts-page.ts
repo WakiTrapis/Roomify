@@ -3,6 +3,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RECEIPT_STATUSES, Receipt } from '../../models/receipt';
 import { ReceiptModal } from '../../modals/receipt-modal/receipt-modal';
 import { ConfirmDeleteModal } from '../../shared/confirm-delete-modal/confirm-delete-modal';
+import { PrintPreviewModal } from '../../modals/print-preview-modal/print-preview-modal';
+import { receiptToPrintDocument } from '../../utils/print-documents';
 
 @Component({
   selector: 'app-receipts-page',
@@ -59,7 +61,7 @@ export class ReceiptsPage {
     const ref = this.modalService.open(ReceiptModal);
     ref.result.then(
       (created: Receipt) => this.receipts.update(list => [...list, created]),
-      () => {}, // modal cerrado sin guardar
+      () => { }, // modal cerrado sin guardar
     );
   }
 
@@ -69,7 +71,7 @@ export class ReceiptsPage {
     ref.result.then(
       (updated: Receipt) =>
         this.receipts.update(list => list.map(r => (r.id === updated.id ? updated : r))),
-      () => {},
+      () => { },
     );
   }
 
@@ -81,5 +83,10 @@ export class ReceiptsPage {
         this.receipts.update(list => list.filter(r => r.id !== receipt.id));
       }
     });
+  }
+
+  openPrint(receipt: Receipt) {
+    const ref = this.modalService.open(PrintPreviewModal, { size: 'lg' });
+    (ref.componentInstance as PrintPreviewModal).doc.set(receiptToPrintDocument(receipt));
   }
 }
