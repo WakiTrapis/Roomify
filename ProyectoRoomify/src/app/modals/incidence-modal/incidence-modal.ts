@@ -8,9 +8,10 @@ import {
   IncidencePriority,
   IncidenceStatus,
 } from '../../models/incidence';
+import { PhotoGalleryUpload } from '../../components/photo-gallery-upload/photo-gallery-upload';
 
 @Component({
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, PhotoGalleryUpload],
   selector: 'app-incidence-modal',
   styleUrl: './incidence-modal.css',
   templateUrl: './incidence-modal.html',
@@ -18,7 +19,7 @@ import {
 export class IncidenceModal implements OnInit {
   private readonly activeModal = inject(NgbActiveModal);
   private readonly fb = inject(NonNullableFormBuilder);
-
+  readonly photos = signal<string[]>([]);
   // null = alta nueva; con datos = edición. Lo rellena la page.
   readonly incidence = signal<Incidence | null>(null);
   readonly isEdit = computed(() => this.incidence() !== null);
@@ -40,6 +41,7 @@ export class IncidenceModal implements OnInit {
     const current = this.incidence();
     if (current) {
       this.form.patchValue({ ...current, technician: current.technician ?? '' });
+      this.photos.set(current.photos ?? []);
     } else {
       this.form.patchValue({ date: new Date().toISOString().slice(0, 10) });
     }
@@ -60,6 +62,7 @@ export class IncidenceModal implements OnInit {
       id: this.incidence()?.id ?? crypto.randomUUID(),
       ...raw,
       technician: raw.technician.trim() || null,
+      photos: this.photos(),
     };
     this.activeModal.close(result);
   }

@@ -1,0 +1,32 @@
+<input #fileInput type="file" class="d-none" multiple accept="image/jpeg,image/png,image/webp"
+    (change)="onFilesSelected($event)" />
+
+@if (photos().length > 0) {
+<div class="row g-2 mb-2">
+    @for (src of photos(); track $index) {
+    <div class="col-6 col-md-3">
+        <div class="thumb position-relative border rounded overflow-hidden">
+            <img [src]="src" [alt]="'Foto ' + ($index + 1) + ' del desperfecto'" />
+            <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1 py-0 px-1"
+                aria-label="Quitar foto" (click)="remove($index)">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+    </div>
+    }
+</div>
+}
+
+@if (canAdd()) {
+<button type="button" class="btn btn-outline-secondary w-100 py-3 upload-box" (click)="fileInput.click()">
+    <i class="bi bi-camera fs-4 d-block mb-1"></i>
+    {{ photos().length === 0 ? 'Añadir fotos' : 'Añadir más fotos' }}
+    <small class="d-block text-muted">
+        {{ photos().length }}/{{ maxPhotos }} · JPG, PNG o WebP, máximo {{ maxSizeMb }} MB cada una
+    </small>
+</button>
+}
+
+@if (error()) {
+<div class="text-danger small mt-1">{{ error() }}</div>
+}

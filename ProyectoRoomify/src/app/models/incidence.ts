@@ -10,6 +10,7 @@ export interface Incidence {
     technician: string | null;
     reportedBy: string;
     date: string;
+    photos?: string[];
 }
 
 export const INCIDENCE_PRIORITIES: { value: IncidencePriority; label: string; badge: string }[] = [

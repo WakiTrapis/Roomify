@@ -60,6 +60,10 @@
                 [class.is-invalid]="isInvalid('date')" />
             <div class="invalid-feedback">La fecha es obligatoria.</div>
         </div>
+        <div class="mt-3">
+            <label class="form-label">Fotos del desperfecto</label>
+            <app-photo-gallery-upload [(photos)]="photos" />
+        </div>
     </div>
 
     <div class="modal-footer">
