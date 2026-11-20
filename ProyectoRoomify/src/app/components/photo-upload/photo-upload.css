@@ -1,0 +1,8 @@
+.preview {
+    max-height: 220px;
+    object-fit: contain;
+}
+
+.upload-box {
+    border-style: dashed;
+}

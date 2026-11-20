@@ -44,6 +44,11 @@
                     [class.is-invalid]="isInvalid('issuedDate')" />
                 <div class="invalid-feedback">La fecha de emisión es obligatoria.</div>
             </div>
+
+            <div class="mb-3">
+                <label class="form-label">Foto del recibo o justificante</label>
+                <app-photo-upload [(photo)]="photo" />
+            </div>
         </div>
 
         <div class="alert alert-light border small mb-0">

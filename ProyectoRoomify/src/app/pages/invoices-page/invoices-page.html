@@ -1,4 +1,5 @@
-<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">    <div>
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+    <div>
         <h2 class="mb-0">Facturas</h2>
         <small class="text-muted">Facturas de suministros de la vivienda</small>
     </div>
@@ -23,7 +24,12 @@
             <tbody>
                 @for (invoice of invoices(); track invoice.id) {
                 <tr>
-                    <td class="fw-medium">{{ invoice.concept }}</td>
+                    <td class="fw-medium">
+                        {{ invoice.concept }}
+                        @if (invoice.photoUrl) {
+                        <i class="bi bi-image text-muted ms-1" title="Tiene foto adjunta"></i>
+                        }
+                    </td>
                     <td>{{ categoryLabel(invoice.category) }}</td>
                     <td>{{ invoice.date }}</td>
                     <td class="text-end">{{ invoice.amount.toFixed(2) }} €</td>

@@ -8,6 +8,7 @@ export interface Invoice {
     category: InvoiceCategory;
     date: string;
     status: InvoiceStatus;
+    photoUrl?: string | null;
 }
 
 export const INVOICE_CATEGORIES: { value: InvoiceCategory; label: string }[] = [

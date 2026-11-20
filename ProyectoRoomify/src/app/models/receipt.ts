@@ -8,6 +8,7 @@ export interface Receipt {
     status: ReceiptStatus;
     issuedDate: string;
     hash: string | null;
+    photoUrl?: string | null;
 }
 
 export const RECEIPT_STATUSES: { value: ReceiptStatus; label: string; badge: string }[] = [
