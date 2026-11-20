@@ -1,13 +1,15 @@
+@if (flat(); as f) {
 <div class="mb-4">
-    <h2 class="mb-0">Panel principal</h2>
-    <small class="text-muted">Resumen de {{ flatName }}</small>
+    <h2 class="mb-0">{{ f.name }}</h2>
+    <small class="text-muted"><i class="bi bi-geo-alt me-1"></i>{{ f.address }}</small>
 </div>
 
 <div class="row g-3">
-    @for (stat of stats; track stat.title) {
+    @for (stat of stats(); track stat.title) {
     <div class="col-12 col-sm-6 col-xl-3">
         <app-summary-card [title]="stat.title" [value]="stat.value" [icon]="stat.icon" [color]="stat.color"
             [hint]="stat.hint ?? ''" />
     </div>
     }
 </div>
+}

@@ -11,15 +11,16 @@ import { NotFoundPage } from './pages/not-found-page/not-found-page';
 import { FlatsPage } from './pages/flats-page/flats-page';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: '', redirectTo: 'flats', pathMatch: 'full' },
     { path: 'login', component: LoginPage, title: 'Acceso' },
-    { path: 'dashboard', component: DashboardPage, title: 'Panel principal' },
-    { path: 'invoices', component: InvoicesPage, title: 'Facturas' },
-    { path: 'incidences', component: IncidencesPage, title: 'Incidencias' },
-    { path: 'tenants', component: TenantsPage, title: 'Inquilinos' },
-    { path: 'notices', component: NoticesPage, title: 'Comunicados' },
-    { path: 'receipts', component: ReceiptsPage, title: 'Recibos' },
-    { path: 'settings', component: FlatSettingsPage, title: 'Ajustes de vivienda' },
     { path: 'flats', component: FlatsPage, title: 'Mis viviendas' },
-    { path: '**', component: NotFoundPage, title: 'Página no encontrada' }
+    { path: 'flats/:flatId', redirectTo: 'flats/:flatId/dashboard', pathMatch: 'full' },
+    { path: 'flats/:flatId/dashboard', component: DashboardPage, title: 'Panel principal' },
+    { path: 'flats/:flatId/invoices', component: InvoicesPage, title: 'Facturas' },
+    { path: 'flats/:flatId/incidences', component: IncidencesPage, title: 'Incidencias' },
+    { path: 'flats/:flatId/tenants', component: TenantsPage, title: 'Inquilinos' },
+    { path: 'flats/:flatId/notices', component: NoticesPage, title: 'Comunicados' },
+    { path: 'flats/:flatId/receipts', component: ReceiptsPage, title: 'Recibos' },
+    { path: 'flats/:flatId/settings', component: FlatSettingsPage, title: 'Ajustes de vivienda' },
+    { path: '**', component: NotFoundPage, title: 'Página no encontrada' },
 ];

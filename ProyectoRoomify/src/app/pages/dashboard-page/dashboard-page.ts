@@ -1,13 +1,9 @@
-import { Component } from '@angular/core';
-import { SummaryCard, SummaryColor } from '../../components/summary-card/summary-card';
+import { Component, computed, inject, input } from '@angular/core';
+import { Flats } from '../../services/flats';
+import { SummaryCard } from '../../components/summary-card/summary-card';
+import { DashboardStat } from '../../models/dashboardStat';
 
-interface DashboardStat {
-  title: string;
-  value: string;
-  icon: string;
-  color: SummaryColor;
-  hint?: string;
-}
+
 
 @Component({
   imports: [SummaryCard],
@@ -16,13 +12,24 @@ interface DashboardStat {
   templateUrl: './dashboard-page.html',
 })
 export class DashboardPage {
-  readonly flatName = 'Piso Miño 12';
+  private readonly flatsService = inject(Flats);
 
-  // Datos de prueba hasta que la API ofrezca las métricas reales
-  readonly stats: DashboardStat[] = [
-    { title: 'Recaudado este mes', value: '450,00 €', icon: 'bi-cash-stack', color: 'success', hint: '2 de 4 inquilinos al día' },
-    { title: 'Inquilinos morosos', value: '1', icon: 'bi-exclamation-triangle', color: 'danger', hint: 'Pago pendiente de más de 7 días' },
-    { title: 'Incidencias abiertas', value: '2', icon: 'bi-tools', color: 'warning', hint: '1 de prioridad alta' },
-    { title: 'Próximo cobro', value: '1 abr 2027', icon: 'bi-calendar-event', color: 'primary', hint: 'En 3 días' },
-  ];
+  // Llega desde la URL gracias a withComponentInputBinding()
+  readonly flatId = input.required<string>();
+
+  readonly flat = computed(() => this.flatsService.flats().find(f => f.id === this.flatId()));
+
+  // Cada vivienda muestra sus propios datos
+  readonly stats = computed<DashboardStat[]>(() => {
+    const f = this.flat();
+    if (!f) {
+      return [];
+    }
+    return [
+      { title: 'Alquiler mensual', value: `${f.monthlyRent.toFixed(2)} €`, icon: 'bi-cash-stack', color: 'success', hint: 'Total de la vivienda' },
+      { title: 'Ocupación', value: `${f.tenantsCount} de ${f.rooms}`, icon: 'bi-people', color: 'primary', hint: `${f.rooms - f.tenantsCount} habitaciones libres` },
+      { title: 'Inquilinos morosos', value: `${f.overdueTenants}`, icon: 'bi-exclamation-triangle', color: f.overdueTenants > 0 ? 'danger' : 'success', hint: f.overdueTenants > 0 ? 'Requieren seguimiento' : 'Todo al día' },
+      { title: 'Incidencias abiertas', value: `${f.openIncidences}`, icon: 'bi-tools', color: f.openIncidences > 0 ? 'warning' : 'success', hint: f.openIncidences > 0 ? 'Pendientes de resolver' : 'Sin averías' },
+    ];
+  });
 }

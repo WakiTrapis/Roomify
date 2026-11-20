@@ -1,7 +1,8 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, input, linkedSignal, signal } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Contract } from '../../models/contract';
 import { ContractModal } from '../../modals/contract-modal/contract-modal';
+import { Flats } from '../../services/flats';
 
 @Component({
   selector: 'app-flat-settings-page',
@@ -9,7 +10,14 @@ import { ContractModal } from '../../modals/contract-modal/contract-modal';
   templateUrl: './flat-settings-page.html',
 })
 export class FlatSettingsPage {
+  private readonly flatsService = inject(Flats);
   private readonly modalService = inject(NgbModal);
+  readonly flatId = input.required<string>();
+  readonly flat = computed(() => this.flatsService.flats().find(f => f.id === this.flatId()));
+  readonly flatName = computed(() => this.flat()?.name ?? '');
+
+// Empieza con el código de la vivienda y se puede regenerar en local
+readonly accessCode = linkedSignal(() => this.flat()?.code ?? '');
 
   // Datos de prueba hasta conectar con el servicio
   readonly contract = signal<Contract>({
@@ -21,8 +29,7 @@ export class FlatSettingsPage {
     endDate: '2027-08-31',
   });
 
-  readonly flatName = 'Piso Miño 12';
-  readonly accessCode = signal('FLAT-8821');
+
   readonly copied = signal(false);
 
   openEdit() {

@@ -1,6 +1,6 @@
 <div class="app-shell">
-    @if (showLayout()) {
-    <app-sidebar [open]="sidebarOpen()" (navigate)="closeSidebar()" />
+    @if (flatId(); as id) {
+    <app-sidebar [flatId]="id" [open]="sidebarOpen()" (navigate)="closeSidebar()" />
 
     @if (sidebarOpen()) {
     <div class="sidebar-backdrop d-lg-none" (click)="closeSidebar()"></div>
@@ -8,11 +8,11 @@
     }
 
     <div class="app-main">
-        @if (showLayout()) {
-        <app-topbar (menuToggle)="toggleSidebar()" />
+        @if (!isLogin()) {
+        <app-topbar [flat]="currentFlat()" [showMenuButton]="flatId() !== null" (menuToggle)="toggleSidebar()" />
         }
 
-        <main class="app-content" [class.p-3]="showLayout()" [class.p-md-4]="showLayout()">
+        <main class="app-content" [class.p-3]="!isLogin()" [class.p-md-4]="!isLogin()">
             <router-outlet />
         </main>
     </div>

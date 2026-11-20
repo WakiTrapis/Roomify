@@ -4,9 +4,14 @@
         <span class="fs-5 fw-semibold text-white">Roomify</span>
     </div>
 
+    <a class="nav-link sidebar-link mb-3" routerLink="/flats" (click)="navigate.emit()">
+        <i class="bi bi-buildings me-2"></i>Mis viviendas
+    </a>
+
     <nav class="nav flex-column gap-1">
         @for (link of links; track link.path) {
-        <a class="nav-link sidebar-link" [routerLink]="link.path" routerLinkActive="active" (click)="navigate.emit()">
+        <a class="nav-link sidebar-link" [routerLink]="['/flats', flatId(), link.path]" routerLinkActive="active"
+            (click)="navigate.emit()">
             <i class="bi {{ link.icon }} me-2"></i>{{ link.label }}
         </a>
         }

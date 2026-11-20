@@ -34,6 +34,6 @@ export class LoginPage {
       this.form.markAllAsTouched();
       return;
     }
-    this.router.navigateByUrl('/dashboard');
+    this.router.navigateByUrl('/flats');
   }
 }

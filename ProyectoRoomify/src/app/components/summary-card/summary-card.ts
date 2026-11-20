@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
+import { SummaryColor } from '../../models/dashboardStat';
 
-export type SummaryColor = 'primary' | 'success' | 'warning' | 'danger' | 'info';
 
 @Component({
   selector: 'app-summary-card',
