@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+    <div>
+        <h2 class="mb-0">Mis viviendas</h2>
+        <small class="text-muted">Selecciona una vivienda para gestionarla</small>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="openAdd()">
+        <i class="bi bi-plus-lg me-1"></i>Nueva vivienda
+    </button>
+</div>
+
+<div class="row g-3">
+    @for (flat of flats(); track flat.id) {
+    <div class="col-12 col-md-6 col-xl-4">
+        <app-flat-card [flat]="flat" (edit)="openEdit($event)" (remove)="openDelete($event)" />
+    </div>
+    } @empty {
+    <div class="col-12">
+        <div class="text-center text-muted py-5">No tienes viviendas todavía</div>
+    </div>
+    }
+</div>

@@ -15,6 +15,7 @@ export class Sidebar {
   readonly navigate = output<void>();
   
   readonly links = [
+    { path: '/flats', label: 'Mis viviendas', icon: 'bi-buildings' },
     { path: '/dashboard', label: 'Inicio', icon: 'bi-house' },
     { path: '/invoices', label: 'Facturas', icon: 'bi-receipt' },
     { path: '/incidences', label: 'Incidencias', icon: 'bi-tools' },

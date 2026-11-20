@@ -1,0 +1,59 @@
+<div class="card shadow-sm h-100 flat-card">
+    <div class="card-body d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-start gap-2 mb-1">
+            <h5 class="card-title mb-0">
+                <!-- El stretched-link hace clicable toda la card -->
+                <a class="stretched-link text-decoration-none text-reset"
+                    [routerLink]="['/flats', flat().id, 'dashboard']">{{ flat().name }}</a>
+            </h5>
+            <span class="badge flex-shrink-0" [class]="modeBadge()">{{ modeLabel() }}</span>
+        </div>
+
+        <small class="text-muted mb-3">
+            <i class="bi bi-geo-alt me-1"></i>{{ flat().address }}
+        </small>
+
+        <div class="row g-2 text-center mb-3">
+            <div class="col-6">
+                <div class="stat rounded p-2">
+                    <div class="fw-semibold">{{ flat().tenantsCount }}/{{ flat().rooms }}</div>
+                    <small class="text-muted"><i class="bi bi-people me-1"></i>Inquilinos</small>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="stat rounded p-2">
+                    <div class="fw-semibold">{{ flat().monthlyRent.toFixed(2) }} €</div>
+                    <small class="text-muted"><i class="bi bi-cash-coin me-1"></i>Alquiler</small>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="stat rounded p-2">
+                    <div class="fw-semibold" [class.text-warning]="flat().openIncidences > 0">
+                        {{ flat().openIncidences }}
+                    </div>
+                    <small class="text-muted"><i class="bi bi-tools me-1"></i>Incidencias</small>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="stat rounded p-2">
+                    <div class="fw-semibold" [class.text-danger]="flat().overdueTenants > 0">
+                        {{ flat().overdueTenants }}
+                    </div>
+                    <small class="text-muted"><i class="bi bi-exclamation-triangle me-1"></i>Morosos</small>
+                </div>
+            </div>
+        </div>
+
+        <small class="text-muted mb-3">Código: <code>{{ flat().code }}</code></small>
+
+        <!-- Los botones quedan por encima del enlace de la card -->
+        <div class="card-actions mt-auto d-flex gap-2">
+            <button type="button" class="btn btn-sm btn-outline-primary" (click)="edit.emit(flat())">
+                <i class="bi bi-pencil"></i> Editar
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-danger" (click)="remove.emit(flat())">
+                <i class="bi bi-trash"></i> Eliminar
+            </button>
+        </div>
+    </div>
+</div>

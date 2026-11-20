@@ -8,6 +8,7 @@ import { NoticesPage } from './pages/notices-page/notices-page';
 import { ReceiptsPage } from './pages/receipts-page/receipts-page';
 import { FlatSettingsPage } from './pages/flat-settings-page/flat-settings-page';
 import { NotFoundPage } from './pages/not-found-page/not-found-page';
+import { FlatsPage } from './pages/flats-page/flats-page';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -19,5 +20,6 @@ export const routes: Routes = [
     { path: 'notices', component: NoticesPage, title: 'Comunicados' },
     { path: 'receipts', component: ReceiptsPage, title: 'Recibos' },
     { path: 'settings', component: FlatSettingsPage, title: 'Ajustes de vivienda' },
-    { path: '**', component: NotFoundPage, title: 'Página no encontrada' },
+    { path: 'flats', component: FlatsPage, title: 'Mis viviendas' },
+    { path: '**', component: NotFoundPage, title: 'Página no encontrada' }
 ];
